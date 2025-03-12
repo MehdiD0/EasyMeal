@@ -3,6 +3,7 @@ class MealModel {
   String? image;
   String? description;
   String? comment;
+  String? type;
   int? rating;
 
   // Default constructor :
@@ -17,6 +18,7 @@ class MealModel {
     image = map['image'] ?? '';
     description = map['description'] ?? '';
     comment = map['comment'] ?? '';
+    type = map['type'] ?? '';
     rating = (map['rating'] is int) ? map['rating'] as int : 0;
   }
 
@@ -36,6 +38,9 @@ class MealModel {
   void setRating(int rating) {
     this.rating = rating;
   }
+  void setType(String type) {
+    this.type = type;
+  }
 
   // Getters :
   String getName() {
@@ -49,6 +54,9 @@ class MealModel {
   }
   String getDescription() {
     return description ?? '';
+  }
+  String getType() {
+    return type ?? '';
   }
   int getRating() {
     return rating ?? 0;
