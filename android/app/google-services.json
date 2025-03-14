@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766996221039",
+    "project_id": "easymeal-f55db",
+    "storage_bucket": "easymeal-f55db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766996221039:android:c51f30326f10e95a25919a",
+        "android_client_info": {
+          "package_name": "com.example.easy_meal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwI5xHx-Hldxq6SnMSOPLKO_xFxN_fr1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
