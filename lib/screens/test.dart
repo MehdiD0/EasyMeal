@@ -1,4 +1,6 @@
 import 'package:easy_meal/components/buttons.dart';
+import 'package:easy_meal/components/meal_card.dart';
+import 'package:easy_meal/components/snackbar.dart';
 import 'package:easy_meal/components/text_field.dart';
 import 'package:easy_meal/components/wavy_header.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +20,7 @@ class _TestState extends State<Test> {
       body: Column(
         children:[
           WavyHeader(),
-          PrimaryTextField(hintText: "Hakim", controller: TextEditingController(), isObscure: false, validator: (dta){return "s";}, preIcon: null,),
-          PrimaryButton(label: "Hakim",)
+          MealCard()
         ] 
       ),
     );

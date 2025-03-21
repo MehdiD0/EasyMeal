@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(
-      builder: (BuildContext, Orientation, ScreenType) {
+      builder: (buildContext, orientation, screenType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Test()
