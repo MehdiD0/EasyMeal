@@ -12,6 +12,8 @@ class AppTheme {
   static const green = Colors.green;
   static const iconColor = Color.fromARGB(255, 190, 181, 181);
   static const fillColor = Color(0xFFF4F4F8);
+  static const bgColor = Color(0xFFF1F1F1);
+  static const amber = Colors.amber;
 
   static final titleStyle = TextStyle(
     color: Color(0xFFFF904B),
