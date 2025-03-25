@@ -20,7 +20,7 @@ class FilterButtonsGroup extends StatelessWidget {
     return Container(
       height: containerHeight,
       margin: EdgeInsets.symmetric(
-        horizontal: orientation == Orientation.portrait ? 16 : 20,
+        horizontal: orientation == Orientation.portrait ? 14 : 20,
       ),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

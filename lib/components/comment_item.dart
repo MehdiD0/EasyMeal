@@ -10,6 +10,7 @@ class CommentItem extends StatelessWidget {
   final String description;
   final String time;
   final String imagePath;
+
   const CommentItem({
     super.key,
     required this.time,
@@ -20,42 +21,46 @@ class CommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    final double imageSize =
+        isLandscape ? 80 : 50;  //LandScappe veut dire mode payssage
+
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 19),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       padding: const EdgeInsets.all(17),
       decoration: BoxDecoration(
         color: AppTheme.bgColor,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 9.w,
-            height: 4.9.h,
+            width: imageSize,
+            height: imageSize,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                 image: CommentsManagement.getImageProvider(imagePath),
-                //fit: BoxFit.cover,
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: 6.w),
+          SizedBox(width: 5.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  content,
-                  style: const TextStyle(
+                  description,
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-                SizedBox(height: 1.h),
-                Text(description),
-                SizedBox(width: 27.h),
+                SizedBox(height: 5),
+                Text(content),
               ],
             ),
           ),

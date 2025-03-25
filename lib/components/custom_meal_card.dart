@@ -19,7 +19,7 @@ class CustomMealCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(40), // = 40/255
+            color: Colors.black.withAlpha(40), //=40/255
             spreadRadius: 1,
             blurRadius: 3,
             offset: const Offset(0, 2),
@@ -38,7 +38,6 @@ class CustomMealCard extends StatelessWidget {
               height: imageHeight,
               child: Image.asset(mealData['image'], fit: BoxFit.cover),
             ),
-            //clipBehavior: Clip.hardEdge,
           ),
           Expanded(
             child: Padding(
@@ -86,38 +85,42 @@ class CustomMealCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 2.h),
-                  // Évaluation par étoiles
                   Row(
-                    children: List.generate(
-                      5,
-                      (index) => Icon(
-                        index < mealData['rating']
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: AppTheme.amber,
-                        size: 17,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Text(
-                          'Add to menu',
-                          style: TextStyle(color: AppTheme.white, fontSize: 12),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: List.generate(
+                          5,
+                          (index) => Icon(
+                            index < mealData['rating']
+                                ? Icons.star
+                                : Icons.star_border,
+                            color: AppTheme.amber,
+                            size: 17,
+                          ),
                         ),
                       ),
-                    ),
-                    onTap: () {},
+                      InkWell(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Text(
+                            'Add to menu',
+                            style: TextStyle(
+                              color: AppTheme.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ],
               ),

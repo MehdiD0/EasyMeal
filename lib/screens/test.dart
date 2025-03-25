@@ -2,6 +2,7 @@ import 'package:easy_meal/components/buttons.dart';
 import 'package:easy_meal/components/comment_item.dart';
 import 'package:easy_meal/components/custom_meal_card.dart';
 import 'package:easy_meal/components/filter_buttons.dart';
+import 'package:easy_meal/components/meal_filter_buttons.dart';
 import 'package:easy_meal/components/wavy_header.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -47,7 +48,9 @@ class _TestState extends State<Test> {
                 mealData: mealData,
               ),
               SizedBox(height: 3.h),
-              CommentItem(time: "12.5 PM", description: "hakim", content: 'uu', imagePath: '',)
+              CommentItem(time: "12.5 PM", description: "hakim", content: 'uu', imagePath: '',),
+              SizedBox(height: 3.h),
+              MealFilterButtons(),
             ],
           ),
         ),

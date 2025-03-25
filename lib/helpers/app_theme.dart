@@ -16,12 +16,11 @@ class AppTheme {
   static const amber = Colors.amber;
 
   static final titleStyle = TextStyle(
-    color: Color(0xFFFF904B),
+    color: primaryColor,
     fontSize: 20.sp,
     fontFamily: "Edu NSW ACT Foundation",
     fontWeight: FontWeight.bold,
   );
-
   static final button_text = TextStyle(
     color: white,
     fontSize: //20.sp,
@@ -53,6 +52,17 @@ class AppTheme {
   static final textFieldFocusedBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
     borderSide: BorderSide(color: Color(0xffff904b), width: 1.0),
+  );
+  static final searchBarHintStyle = TextStyle(
+    color: darkGrey,
+    fontSize: 16.sp,
+    shadows: [
+      Shadow(
+        color: darkGrey.withAlpha(102),
+        blurRadius: 2,
+        offset: Offset(0, 1),
+      ),
+    ],
   );
 
   static final hintTextStyle = TextStyle(color: darkGrey, fontSize: 18.sp);
