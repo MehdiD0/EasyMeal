@@ -4,12 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MealCard extends StatelessWidget {
-  MealCard({super.key});
-  final MealModel meal = MealModel(
-    name: "Special",
-    image:
-        "https://www.southernliving.com/thmb/UW4kKKL-_M3WgP7pkL6Pb6lwcgM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ham_Sandwich_011-1-49227336bc074513aaf8fdbde440eafe.jpg",
-  );
+  final MealModel meal;
+  const MealCard({super.key, required this.meal});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +17,7 @@ class MealCard extends StatelessWidget {
         // Meal Image
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.network(
+          child: Image.asset(
             meal.image ?? '',
             height: 150,
             width: 150,

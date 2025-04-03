@@ -1,3 +1,4 @@
+import 'package:easy_meal/screens/home_screen.dart';
 import 'package:easy_meal/screens/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -22,7 +23,7 @@ class MainApp extends StatelessWidget {
       builder: (buildContext, orientation, screenType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Test()
+          home: HomeScreen()
         );
       },
     );

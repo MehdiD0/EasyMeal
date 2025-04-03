@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget {
   final Function()? onPressed;
   final bool isLoading;
   final dynamic color;
+  final double? width;
   
 
   const PrimaryButton({
@@ -16,13 +17,13 @@ class PrimaryButton extends StatelessWidget {
     this.icon,
     this.onPressed,
     this.isLoading = false,
-    this.color = AppTheme.primaryColor,
+    this.color = AppTheme.primaryColor, this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90.w,
+      width: width ?? 90.w,
       padding: EdgeInsets.symmetric(horizontal: 3.h, vertical: 3.w),
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
