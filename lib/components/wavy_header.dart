@@ -59,11 +59,11 @@ class WavyHeader extends StatelessWidget {
   final Color endColor;
 
   const WavyHeader({
-    Key? key,
+    super.key,
     this.height = 180.0,
     this.startColor = AppTheme.primaryColor,
     this.endColor = AppTheme.secondaryColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

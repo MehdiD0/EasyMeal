@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/helpers/comments_management.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,3 @@
-import 'package:easy_meal/screens/history_page.dart';
-import 'package:easy_meal/screens/sign_in.dart';
-import 'package:easy_meal/screens/sign_up.dart';
 import 'package:easy_meal/screens/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -25,7 +22,7 @@ class MainApp extends StatelessWidget {
       builder: (buildContext, orientation, screenType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HistoryPage()
+          home: Test()
         );
       },
     );

@@ -15,7 +15,6 @@ class CommentsManagement {
       final bytes = base64Decode(path);
       return MemoryImage(bytes);
     } catch (e) {
-      print(e);
       return const AssetImage('assets/default_comment_image.png');
     }
   }

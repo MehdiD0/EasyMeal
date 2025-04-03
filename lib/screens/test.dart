@@ -1,9 +1,7 @@
-import 'package:easy_meal/components/buttons.dart';
 import 'package:easy_meal/components/comment_item.dart';
 import 'package:easy_meal/components/custom_meal_card.dart';
 import 'package:easy_meal/components/filter_buttons.dart';
 import 'package:easy_meal/components/meal_filter_buttons.dart';
-import 'package:easy_meal/components/wavy_header.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

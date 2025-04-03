@@ -137,7 +137,6 @@ class _SignUpPage extends State<SignUpPage> {
                         alter: false,
                       ),
                     );
-                    print("Utilisateur créé avec succès");
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         CustomSnackBar.createSnackbar(
@@ -145,7 +144,6 @@ class _SignUpPage extends State<SignUpPage> {
                           alter: false,
                         ),
                       );
-                      print("Error When Sign UP");
                     }
                   }
                 },

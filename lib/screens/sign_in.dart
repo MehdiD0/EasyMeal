@@ -101,21 +101,21 @@ class _SignInPage extends State<SignInPage> {
                               password,
                             );
                             if (sucess != null) {
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 CustomSnackBar.createSnackbar(
                                   msg: "User Login Succefully",
                                   alter: false,
                                 ),
                               );
-                              print("User Login Succefully");
                             } else {
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 CustomSnackBar.createSnackbar(
                                   msg: "Error when Login",
                                   alter: true,
                                 ),
                               );
-                              print("Error when login");
                             }
                             setState(() {
                               isLoading = false;
