@@ -3,6 +3,7 @@ import 'package:easy_meal/components/day_card.dart';
 import 'package:easy_meal/components/meal_card.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/models/meal_model.dart';
+import 'package:easy_meal/screens/MouadPages/type_repas_page.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(left: 3.w),
                   child: Text("Today's meal :", style: AppTheme.titleStyle),
                 ),
-                PrimaryTextButton(label: "Edit", onPressed: () {}),
+                PrimaryTextButton(
+                  label: "Edit",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TypeRepasPage()),
+                    );
+                  },
+                ),
               ],
             ),
             Padding(
@@ -115,7 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: AppTheme.primaryColor,
                         size: 40,
                       ),
-                      Text("Export PDF", style: AppTheme.titleStyle.copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold),)
+                      Text(
+                        "Export PDF",
+                        style: AppTheme.titleStyle.copyWith(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -136,13 +151,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Icon(Icons.image, color: AppTheme.primaryColor, size: 40),
-                      Text("Export PNG", style: AppTheme.titleStyle.copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold),)
+                      Text(
+                        "Export PNG",
+                        style: AppTheme.titleStyle.copyWith(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 2.h,),
+            SizedBox(height: 2.h),
             Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
           ],
         ),

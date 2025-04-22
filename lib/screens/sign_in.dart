@@ -6,6 +6,7 @@ import 'package:easy_meal/components/wavy_header.dart';
 import 'package:easy_meal/firbase_authentication/auth_services.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/helpers/validators.dart';
+import 'package:easy_meal/screens/MouadPages/forgetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -82,7 +83,10 @@ class _SignInPage extends State<SignInPage> {
                 controller: passwController,
               ),
               SizedBox(height: 3.h),
-              PrimaryTextButton(label: "Forgot Password?", onPressed: () {}),
+              PrimaryTextButton(label: "Forgot Password?", onPressed: () {
+                showForgotPasswordBottomSheet(context);
+                  
+              }),
               PrimaryButton(
                 label: isLoading ? "" : "Login",
                 onPressed:
