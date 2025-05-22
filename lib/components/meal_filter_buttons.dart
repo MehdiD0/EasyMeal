@@ -2,7 +2,8 @@ import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MealFilterButtons extends StatefulWidget {
-  const MealFilterButtons({super.key});
+  final Function(String) onCategorySelected;
+  const MealFilterButtons({super.key, required this.onCategorySelected});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -16,6 +17,7 @@ class _MealFilterButtonsState extends State<MealFilterButtons> {
     setState(() {
       _selectedCategory = category;
     });
+    widget.onCategorySelected(category); // Notifie le parent
   }
 
   Widget _buildCategoryButton(String text, bool isSelected) {
@@ -27,17 +29,18 @@ class _MealFilterButtonsState extends State<MealFilterButtons> {
           width: 90,
           height: 90,
           decoration: BoxDecoration(
-            gradient: isSelected
-                ? LinearGradient(
-                    colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )
-                : LinearGradient(
-                    colors: [AppTheme.secondaryColor, AppTheme.white],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
+            gradient:
+                isSelected
+                    ? LinearGradient(
+                      colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    )
+                    : LinearGradient(
+                      colors: [AppTheme.secondaryColor, AppTheme.white],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -49,7 +52,8 @@ class _MealFilterButtonsState extends State<MealFilterButtons> {
               ),
             ],
           ),
-          child: Transform.rotate(//si en le fait pas , le text doit rotat comme rectagle
+          child: Transform.rotate(
+            //si en le fait pas , le text doit rotat comme rectagle
             angle: -0.7854, // Rotation inverse pour le texte
             child: Center(
               child: Text(

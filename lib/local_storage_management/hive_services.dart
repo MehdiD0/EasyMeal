@@ -79,4 +79,36 @@ class HiveServices {
     final mealBox = Hive.box<MealModel>(mealBoxName);
     return mealBox.get(id);
   }
+
+  static List<MealModel> getMealsByType(String type) {
+    final mealBox = Hive.box<MealModel>(mealBoxName);
+    return mealBox.values
+        .where((meal) => meal.type?.toLowerCase() == type.toLowerCase())
+        .toList();
+  }
+
+  static Future<void> deleteMeal(String id) async {
+    final mealBox = Hive.box<MealModel>(mealBoxName);
+    await mealBox.delete(id);
+  }
+
+  static List<MealModel> searchMealsByName(String query) {
+    final mealBox = Hive.box<MealModel>(mealBoxName);
+    return mealBox.values
+        .where((meal) => meal.name!.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+  }
+
+  static List<MealModel> getAllMeals() {
+    final mealBox = Hive.box<MealModel>(mealBoxName);
+    return mealBox.values.toList();
+  }
+
+  static List<MealModel> getRecentMeals() {
+    final mealBox = Hive.box<MealModel>(mealBoxName);
+
+    final allMeals = mealBox.values.toList();
+    allMeals.sort((a, b) => b.dateAdded!.compareTo(a.dateAdded!));
+    return allMeals.take(5).toList();
+  }
 }

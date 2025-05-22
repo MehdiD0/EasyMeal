@@ -8,7 +8,7 @@ part of 'meal_model.dart';
 
 class MealModelAdapter extends TypeAdapter<MealModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   MealModel read(BinaryReader reader) {
@@ -23,13 +23,14 @@ class MealModelAdapter extends TypeAdapter<MealModel> {
       ..description = fields[2] as String?
       ..comment = fields[3] as String?
       ..type = fields[4] as String?
-      ..rating = fields[5] as int?;
+      ..rating = fields[5] as int?
+      ..dateAdded = fields[6] as DateTime?;
   }
 
   @override
   void write(BinaryWriter writer, MealModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class MealModelAdapter extends TypeAdapter<MealModel> {
       ..writeByte(4)
       ..write(obj.type)
       ..writeByte(5)
-      ..write(obj.rating);
+      ..write(obj.rating)
+      ..writeByte(6)
+      ..write(obj.dateAdded);
   }
 
   @override

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CommentItem extends StatelessWidget {
-  final String content;
-  final String description;
-  final String time;
-  final String imagePath;
+  final String ?content;
+  final String ?description;
+  final String ?time;
+  final String ?imagePath;
 
   const CommentItem({
     super.key,
@@ -40,7 +40,7 @@ class CommentItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: CommentsManagement.getImageProvider(imagePath),
+                image: CommentsManagement.getImageProvider(imagePath??''),
                 fit: BoxFit.cover,
               ),
             ),
@@ -51,18 +51,18 @@ class CommentItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  description,
+                  description ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
                 SizedBox(height: 5),
-                Text(content),
+                Text(content??''),
               ],
             ),
           ),
-          Text(time),
+          Text(time??'default time'),
         ],
       ),
     );

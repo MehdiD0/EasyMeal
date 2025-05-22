@@ -1,7 +1,7 @@
 import 'package:hive_flutter/adapters.dart';
 
 part 'meal_model.g.dart';
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class MealModel {
   @HiveField(0)
   String? name;
@@ -15,6 +15,8 @@ class MealModel {
   String? type;
   @HiveField(5)
   int? rating;
+  @HiveField(6)
+  DateTime? dateAdded;
 
   // Default constructor :
   MealModel({required this.name, required this.image});
