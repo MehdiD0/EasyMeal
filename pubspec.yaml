@@ -7,11 +7,15 @@ environment:
   sdk: ^3.7.0-323.0.dev
 
 dependencies:
+  build_runner: ^2.4.15
   firebase_auth: ^5.5.1
   firebase_core: ^3.12.1
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  hive_generator: ^2.0.1
   intl: ^0.20.2
   sizer: ^3.0.5
 
