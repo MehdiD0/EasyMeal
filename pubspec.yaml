@@ -29,7 +29,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    # - assets/MouadPart/
+    #- assets/MouadPart/
     # - assets/MouadPart/dejeuner.png
     # - assets/MouadPart/dejeuner.png
   fonts:
