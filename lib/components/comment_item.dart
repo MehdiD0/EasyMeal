@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/helpers/comments_management.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +8,14 @@ class CommentItem extends StatelessWidget {
   final String ?content;
   final String ?description;
   final String ?time;
-  final String ?imagePath;
+  final Uint8List ?imageBytes;
 
   const CommentItem({
     super.key,
     required this.time,
     required this.description,
     required this.content,
-    required this.imagePath,
+    required this.imageBytes,
   });
 
   @override
@@ -40,7 +41,7 @@ class CommentItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: CommentsManagement.getImageProvider(imagePath??''),
+                image: CommentsManagement.getImageProvider(imageBytes!),
                 fit: BoxFit.cover,
               ),
             ),

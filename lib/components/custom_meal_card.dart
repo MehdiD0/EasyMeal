@@ -36,7 +36,7 @@ class CustomMealCard extends StatelessWidget {
             child: SizedBox(
               width: imageWidth,
               height: imageHeight,
-              child: Image.asset(mealData['image'], fit: BoxFit.cover),
+              child: Image.memory(mealData['image'], fit: BoxFit.cover),
             ),
           ),
           Expanded(

@@ -62,7 +62,7 @@ class HiveServices {
     await authBox.delete(userKey);
   }
 
-  static Future<String> savaMeal(MealModel meal) async {
+  static Future<String> saveMeal(MealModel meal) async {
     final mealBox = Hive.box<MealModel>(mealBoxName);
     //un ID unique pour le repas
     String id = DateTime.now().microsecondsSinceEpoch.toString();

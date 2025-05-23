@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:hive_flutter/adapters.dart';
 
 part 'meal_model.g.dart';
@@ -6,7 +8,7 @@ class MealModel {
   @HiveField(0)
   String? name;
   @HiveField(1) 
-  String? image;
+  Uint8List? image;
   @HiveField(2)
   String? description;
   @HiveField(3)
@@ -24,11 +26,12 @@ class MealModel {
   // Constructor from map :
   MealModel.fromMap(Map<String, dynamic> map) {
     name = map['name'] ?? '';
-    image = map['image'] ?? '';
+    image = map['image'] != null ? Uint8List.fromList(List<int>.from(map['image'])):null;
     description = map['description'] ?? '';
     comment = map['comment'] ?? '';
     type = map['type'] ?? '';
     rating = (map['rating'] is int) ? map['rating'] as int : 0;
+    dateAdded = map['dateAdded'] != null ? DateTime.parse(map['dateAdded']) : null;
   }
 
   // Setters :
@@ -36,7 +39,7 @@ class MealModel {
     this.name = name;
   }
 
-  void setImage(String image) {
+  void setImage(Uint8List image) {
     this.image = image;
   }
 
@@ -61,8 +64,8 @@ class MealModel {
     return name ?? '';
   }
 
-  String getImage() {
-    return image ?? '';
+  Uint8List? getImage() {
+    return image;
   }
 
   String getComment() {

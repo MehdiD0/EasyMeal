@@ -61,7 +61,7 @@ class _HistoryMealFilterState extends State<HistoryMealFilter> {
                   final meal = _filteredMeals[index];
                   return CustomMealCard(
                     mealData: {
-                      'image': meal.image ?? 'assets/image/icon.jpg',
+                      'imageBytes': meal.image,
                       'name': meal.name ?? '',
                       'date': meal.dateAdded??'Unknown',
                       'timesMade': 0,

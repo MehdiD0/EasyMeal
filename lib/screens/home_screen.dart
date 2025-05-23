@@ -24,12 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
       return DateFormat('yyyy-MM-dd').format(newDate);
     });
 
-    List<MealModel> todayMeals = [
-      MealModel(name: "Special", image: "assets/pasta.jpg"),
-      MealModel(name: "KawKaw", image: "assets/pasta.jpg"),
-      MealModel(name: "The", image: "assets/pasta.jpg"),
-      MealModel(name: "Hakim", image: "assets/pasta.jpg"),
-    ];
+    // List<MealModel> todayMeals = [
+    //   MealModel(name: "Special", image: "assets/pasta.jpg"),
+    //   MealModel(name: "KawKaw", image: "assets/pasta.jpg"),
+    //   MealModel(name: "The", image: "assets/pasta.jpg"),
+    //   MealModel(name: "Hakim", image: "assets/pasta.jpg"),
+    // ];
+    //changement de type si mehdi hada makan
+    List<MealModel> todayMeals = [];
 
     return SafeArea(
       child: Scaffold(

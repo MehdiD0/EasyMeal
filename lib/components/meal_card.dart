@@ -17,17 +17,19 @@ class MealCard extends StatelessWidget {
         // Meal Image
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            meal.image ?? '',
-            height: 150,
-            width: 150,
-            fit: BoxFit.cover,
-          ),
+          child:
+              meal.image != null
+                  ? Image.memory(meal.image!, fit: BoxFit.cover)
+                  : Image.asset(
+                    "assets/pasta.jpg",
+                    height: 150,
+                    width: 150,
+                    fit: BoxFit.cover,
+                  ),
         ),
         SizedBox(height: 8),
-
         // Meal Title
-        SizedBox(width: 5,),
+        SizedBox(width: 5),
         Padding(
           padding: const EdgeInsets.only(left: 5.0),
           child: Text(

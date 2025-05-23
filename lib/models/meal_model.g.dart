@@ -18,7 +18,7 @@ class MealModelAdapter extends TypeAdapter<MealModel> {
     };
     return MealModel(
       name: fields[0] as String?,
-      image: fields[1] as String?,
+      image: fields[1] as Uint8List?,
     )
       ..description = fields[2] as String?
       ..comment = fields[3] as String?

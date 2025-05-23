@@ -1,12 +1,12 @@
-import 'package:easy_meal/components/custom_meal_card.dart';
+import 'package:easy_meal/components/comment_item.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/models/meal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class AllHistoryMeals extends StatelessWidget {
+class CommentVisuel extends StatelessWidget {
   final List<MealModel> meals;
-  const AllHistoryMeals({super.key, required this.meals});
+  const CommentVisuel({super.key, required this.meals});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AllHistoryMeals extends StatelessWidget {
         ? Padding(
           padding: EdgeInsets.only(top: 5.h),
           child: Text(
-            "No meals found",
+            "No commment available",
             style: AppTheme.paragraphStyle.copyWith(fontSize: 15.sp),
           ),
         )
@@ -24,14 +24,11 @@ class AllHistoryMeals extends StatelessWidget {
           itemCount: meals.length,
           itemBuilder: (context, index) {
             final meal = meals[index];
-            return CustomMealCard(
-              mealData: {
-                'image': meal.image ?? 'assets/image/icon.jpg',
-                'name': meal.name ?? '',
-                'date': meal.dateAdded ?? 'Unknown',
-                'timesMade': 0,
-                'rating': meal.rating?.toInt() ?? 0,
-              },
+            return CommentItem(
+              time: meal.dateAdded.toString(),
+              description: meal.description ?? "",
+              content: meal.name ?? "",
+              imageBytes: meal.image ,
             );
           },
         );
