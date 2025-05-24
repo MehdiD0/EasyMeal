@@ -44,7 +44,7 @@ class TypeRepasPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Jua',
+                      fontFamily: 'roboto',
                       color: Color(0xFFFF914C),
                     ),
                   ),
