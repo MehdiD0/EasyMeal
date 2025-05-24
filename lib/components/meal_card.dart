@@ -23,7 +23,7 @@ class MealCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child:
-                meal.image != null
+                meal.image != null && meal.image!.isNotEmpty
                     ? Image.memory(meal.image!, fit: BoxFit.cover)
                     : Image.asset(
                       "assets/pasta.jpg",

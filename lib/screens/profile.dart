@@ -15,39 +15,29 @@ void _launchURL() async {
 void _showLogoutDialog(BuildContext context) {
   showDialog(
     context: context,
-
     builder:
         (context) => AlertDialog(
           backgroundColor: Colors.white,
           title: const Text(
             "Log Out",
-            style: TextStyle(
-              fontFamily: 'roboto',
-              color: Color.fromARGB(255, 255, 0, 0),
-            ),
+            style: TextStyle(fontFamily: 'roboto', color: Colors.red),
           ),
           content: const Text(
             "Are you sure you want to log out?",
-            style: TextStyle(
-              fontFamily: 'roboto',
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
+            style: TextStyle(fontFamily: 'roboto', color: Colors.black),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
               child: const Text(
                 "Cancel",
-                style: TextStyle(
-                  fontFamily: 'roboto',
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
+                style: TextStyle(color: Colors.black),
               ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
-                // goto login page
+                // TODO: Navigate to login page
               },
               child: const Text("Logout", style: TextStyle(color: Colors.red)),
             ),
@@ -63,24 +53,28 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavBar(currentIndex: 3),
+
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 2.h),
-              const Text(
+              // 🔸 Header
+              Text(
                 'Profile',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 25.sp,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 255, 128, 0),
+                  color: Colors.orange,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 3.h),
+
+              // 🔸 Profile Info
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -98,7 +92,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 4.5.h,
-                      backgroundImage: AssetImage('assets/profile.jpg'),
+                      backgroundImage: const AssetImage('assets/profile.jpg'),
                     ),
                     SizedBox(width: 5.w),
                     Column(
@@ -123,7 +117,10 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
+
               SizedBox(height: 4.h),
+
+              // 🔸 Settings Options
               Column(
                 children: [
                   _buildSettingsOption(
@@ -137,14 +134,14 @@ class ProfilePage extends StatelessWidget {
                     context,
                     Icons.help,
                     'Help and Support',
-                    'Help and Support',
+                    'Access help and support',
                     _launchURL,
                   ),
                   _buildSettingsOption(
                     context,
                     Icons.info,
                     'About App',
-                    'About App',
+                    'Learn more about this app',
                     () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -156,23 +153,23 @@ class ProfilePage extends StatelessWidget {
                     context,
                     Icons.security,
                     'Two-Factor Authentication',
-                    'Further secure your account for safety',
+                    'Add extra security to your account',
                     () {},
                   ),
                   _buildSettingsOption(
                     context,
                     Icons.logout,
                     'Log out',
-                    'Further secure your account for safety',
+                    'Sign out of your account',
                     () => _showLogoutDialog(context),
                   ),
                 ],
               ),
-              SizedBox(height: 1.h),
-              SizedBox(height: 13.h),
+              SizedBox(height: 4.h),
+
+              // 🔸 Divider
               Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
               SizedBox(height: 2.h),
-              BottomNavBar(currentIndex: 3),
             ],
           ),
         ),
@@ -197,61 +194,8 @@ class ProfilePage extends StatelessWidget {
         subtitle,
         style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
       ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        color: Colors.black,
-        size: 16,
-      ),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
-    );
-  }
-
-  Widget _buildStatCard(
-    String title,
-    String value, {
-    bool isHighlighted = false,
-  }) {
-    return Container(
-      width: 38.w,
-      height: 22.h,
-      padding: EdgeInsets.all(3.h),
-      decoration: BoxDecoration(
-        color:
-            isHighlighted
-                ? const Color.fromARGB(255, 255, 128, 0)
-                : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 5,
-            spreadRadius: 2,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: isHighlighted ? Colors.white : Colors.black,
-            ),
-          ),
-          SizedBox(height: 3.h),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: isHighlighted ? Colors.white : Colors.orange,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

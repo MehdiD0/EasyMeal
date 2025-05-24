@@ -21,6 +21,7 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   final TextEditingController controller = TextEditingController();
   int _selectedFilterIndex = 0;
+
   final List<String> options = ["All", "Recent", "Filter", "Comments"];
   final List<MealModel> meals = HiveServices.getAllMeals();
   final List<MealModel> recentMeals = HiveServices.getRecentMeals();
@@ -29,52 +30,76 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.fillColor,
+      bottomNavigationBar: BottomNavBar(currentIndex: 2), // Fixed nav bar
+
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 2.h),
-            Text(
-              "History",
-              style: AppTheme.titleStyle.copyWith(fontSize: 25.sp),
-            ),
-            SizedBox(height: 3.h),
-            CustomSearchBar(
-              hintText: "Search your meal",
-              controller: controller,
-            ),
-            SizedBox(height: 3.h),
-            FilterButtonsGroup(
-              options: options,
-              selectedIndex: _selectedFilterIndex,
-              onSelected: (index) {
-                setState(() {
-                  _selectedFilterIndex = index;
-                });
-              },
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    if (_selectedFilterIndex == 2)
-                      HistoryMealFilter()
-                    else if (_selectedFilterIndex == 3)
-                      CommentVisuel(meals: meals)
-                    else if (_selectedFilterIndex == 1)
-                      RecentMeals(meals: recentMeals)
-                    else
-                      AllHistoryMeals(meals: meals),
-                  ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "History",
+                  style: AppTheme.titleStyle.copyWith(
+                    fontSize: 25.sp,
+                    fontWeight:
+                        FontWeight.w800, // Stronger weight for professionalism
+                    letterSpacing: 1.2,
+                  ),
                 ),
               ),
-            ),
-            Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
-            SizedBox(height: 2.h),
-            BottomNavBar(currentIndex: 2),
-            SizedBox(height: 2.h),
-          ],
+              SizedBox(height: 3.h),
+
+              // Search Bar with themed hintStyle (assuming CustomSearchBar supports it)
+              CustomSearchBar(
+                hintText: "Search your meal",
+                controller: controller,
+                // Uncomment if your CustomSearchBar accepts a hintStyle param:
+                // hintStyle: AppTheme.searchBarHintStyle,
+              ),
+              SizedBox(height: 3.h),
+
+              // Filter Buttons with themed text style (depends on your FilterButtonsGroup implementation)
+              FilterButtonsGroup(
+                options: options,
+                selectedIndex: _selectedFilterIndex,
+                onSelected: (index) {
+                  setState(() => _selectedFilterIndex = index);
+                },
+                // If your FilterButtonsGroup supports styling text, pass this:
+                // textStyle: AppTheme.labelStyle.copyWith(
+                //   fontWeight: FontWeight.w600,
+                //   fontSize: 14.sp,
+                // ),
+              ),
+              SizedBox(height: 2.h),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 5.h),
+                    child: _buildContent(),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Widget _buildContent() {
+    switch (_selectedFilterIndex) {
+      case 1:
+        return RecentMeals(meals: recentMeals);
+      case 2:
+        return HistoryMealFilter();
+      case 3:
+        return CommentVisuel(meals: meals);
+      default:
+        return AllHistoryMeals(meals: meals);
+    }
   }
 }

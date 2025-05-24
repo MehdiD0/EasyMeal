@@ -1,16 +1,16 @@
 import 'dart:typed_data';
+import 'package:easy_meal/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_meal/models/meal_model.dart';
 import 'package:easy_meal/components/LinkText.dart';
 import 'package:easy_meal/components/RatingCard.dart';
+import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AllMeals extends StatelessWidget {
   AllMeals({super.key});
 
-  // Dummy meals – replace with data from Hive or DB later
   final Map<String, List<MealModel>> categorizedMeals = {
     'Entrées 🥗': [
       MealModel(name: 'Bruschetta', image: Uint8List(0)),
@@ -29,15 +29,31 @@ class AllMeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 8.h),
-            ...categorizedMeals.entries.map((entry) {
-              return _buildCategorySection(entry.key, entry.value, context);
-            }).toList(),
-          ],
+      backgroundColor: AppTheme.white,
+      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "Meals",
+                  style: AppTheme.titleStyle.copyWith(
+                    fontSize: 26.sp,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              ...categorizedMeals.entries.map(
+                (entry) =>
+                    _buildCategorySection(entry.key, entry.value, context),
+              ),
+              SizedBox(height: 1.h),
+            ],
+          ),
         ),
       ),
     );
@@ -49,7 +65,7 @@ class AllMeals extends StatelessWidget {
     BuildContext context,
   ) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.5.w),
+      padding: EdgeInsets.symmetric(vertical: 2.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,36 +74,26 @@ class AllMeals extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 36,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.brown,
+                style: AppTheme.labelStyle.copyWith(
+                  fontSize: 20.sp,
+                  color: AppTheme.darkGrey,
                 ),
               ),
-              LinkText(
-                text: 'Create',
-                onTap: () {
-                  // Navigate to Add Meal Screen
-                  context.goNamed('addmeal');
-                },
-              ),
+              LinkText(text: 'Create', onTap: () => context.goNamed('addmeal')),
             ],
           ),
           SizedBox(height: 2.h),
           SizedBox(
             height: 30.h,
-            child: ListView(
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              children:
-                  meals
-                      .map(
-                        (meal) => Padding(
-                          padding: EdgeInsets.all(1.h),
-                          child: RatingCard(meal: meal),
-                        ),
-                      )
-                      .toList(),
+              itemCount: meals.length,
+              separatorBuilder: (_, __) => SizedBox(width: 3.w),
+              itemBuilder:
+                  (context, i) => Padding(
+                    padding: EdgeInsets.only(bottom: 1.h),
+                    child: RatingCard(meal: meals[i]),
+                  ),
             ),
           ),
         ],

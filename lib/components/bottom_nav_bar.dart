@@ -1,5 +1,3 @@
-import 'package:easy_meal/components/dialog.dart';
-import 'package:easy_meal/firbase_authentication/auth_services.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -11,130 +9,53 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        InkWell(
-          onTap: () {
-            context.goNamed("home");
-          },
-          child: Column(
-            children: [
-              Icon(
-                Icons.home,
-                color: currentIndex == 0 ? AppTheme.primaryColor : Colors.grey,
-              ),
-              Text(
-                "Home",
-                style: AppTheme.hintTextStyle.copyWith(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                  color:
-                      currentIndex == 0 ? AppTheme.primaryColor : Colors.grey,
-                ),
-              ),
-            ],
+    return Container(
+      height: 10.h,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildNavItem(context, Icons.home, "Home", 0, "home"),
+          _buildNavItem(context, Icons.lunch_dining, "Meals", 1, "allmeals"),
+          _buildNavItem(context, Icons.history, "History", 2, "history"),
+          _buildNavItem(context, Icons.person, "Profile", 3, "profile"),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    int index,
+    String route,
+  ) {
+    final isSelected = currentIndex == index;
+    return InkWell(
+      onTap: () {
+        if (!isSelected) {
+          context.goNamed(route);
+        }
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: isSelected ? AppTheme.primaryColor : Colors.grey),
+          Text(
+            label,
+            style: AppTheme.hintTextStyle.copyWith(
+              fontSize: 15.sp,
+              fontWeight: FontWeight.bold,
+              color: isSelected ? AppTheme.primaryColor : Colors.grey,
+            ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            context.goNamed("allmeals");
-          },
-          child: Column(
-            children: [
-              Icon(
-                Icons.lunch_dining,
-                color: currentIndex == 1 ? AppTheme.primaryColor : Colors.grey,
-              ),
-              Text(
-                "Meals",
-                style: AppTheme.hintTextStyle.copyWith(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                  color:
-                      currentIndex == 1 ? AppTheme.primaryColor : Colors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            context.goNamed("history");
-          },
-          child: Column(
-            children: [
-              Icon(
-                Icons.history,
-                color: currentIndex == 2 ? AppTheme.primaryColor : Colors.grey,
-              ),
-              Text(
-                "History",
-                style: AppTheme.hintTextStyle.copyWith(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                  color:
-                      currentIndex == 2 ? AppTheme.primaryColor : Colors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            context.goNamed("profile");
-          },
-          child: Column(
-            children: [
-              Icon(
-                Icons.person,
-                color: currentIndex == 3 ? AppTheme.primaryColor : Colors.grey,
-              ),
-              Text(
-                "Profile",
-                style: AppTheme.hintTextStyle.copyWith(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                  color:
-                      currentIndex == 3 ? AppTheme.primaryColor : Colors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            //AuthService().logout();
-            showDialog(
-              context: context,
-              builder: (BuildContext dialogContex) {
-                return CustomDialog.createDialog(
-                  context: dialogContex,
-                  title: "Log out of the app",
-                  content: "Are you sure you want to log out?",
-                  onConfirm: () {
-                    AuthService().logout();
-                  },
-                );
-              },
-            );
-          },
-          child: Column(
-            children: [
-              Icon(Icons.logout, color: Colors.red),
-              Text(
-                "Logout",
-                style: AppTheme.hintTextStyle.copyWith(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

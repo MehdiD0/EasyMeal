@@ -16,8 +16,8 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     double screenWidth = MediaQuery.of(context).size.width;
-//     double cardWidth = screenWidth * 0.4; 
-//     double cardHeight = cardWidth * 1.4; 
+//     double cardWidth = screenWidth * 0.4;
+//     double cardHeight = cardWidth * 1.4;
 
 //     return Container(
 //       width: cardWidth,
@@ -34,7 +34,7 @@
 //               height: cardHeight,
 //               child: FittedBox(
 //                 fit: BoxFit.cover,
-//                 child: imageUrl, 
+//                 child: imageUrl,
 //               ),
 //             ),
 //           ),
@@ -46,7 +46,7 @@
 //             child: Container(
 //               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
 //               decoration: BoxDecoration(
-//                 color: const Color.fromARGB(221, 0, 0, 0).withOpacity(0.2), 
+//                 color: const Color.fromARGB(221, 0, 0, 0).withOpacity(0.2),
 //                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
 //               ),
 //               child: Column(
@@ -73,7 +73,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:easy_meal/components/RatingStars.dart';
 import 'package:easy_meal/models/meal_model.dart'; // Adjust path as needed
@@ -94,9 +93,7 @@ class RatingCard extends StatelessWidget {
     return Container(
       width: cardWidth,
       height: cardHeight,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Stack(
         children: [
           ClipRRect(
@@ -104,12 +101,11 @@ class RatingCard extends StatelessWidget {
             child: SizedBox(
               width: cardWidth,
               height: cardHeight,
-              child: meal.image != null
-                  ? Image.memory(
-                      meal.image!,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(color: Colors.grey), // Placeholder
+              child:
+                  meal.image != null && meal.image!.isNotEmpty
+                      ? Image.memory(meal.image!, fit: BoxFit.cover)
+                      : Container(color: Colors.grey),
+              // Placeholder
             ),
           ),
           Positioned(
@@ -120,8 +116,9 @@ class RatingCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               decoration: BoxDecoration(
                 color: const Color.fromARGB(221, 0, 0, 0).withOpacity(0.2),
-                borderRadius:
-                    const BorderRadius.vertical(bottom: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(10),
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
