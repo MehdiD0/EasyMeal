@@ -1,5 +1,4 @@
 import 'package:easy_meal/components/filter_buttons.dart';
-import 'package:easy_meal/components/meal_card.dart';
 import 'package:easy_meal/components/search_bar.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/local_storage_management/hive_services.dart';

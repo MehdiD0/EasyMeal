@@ -6,7 +6,7 @@ class RepasCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const RepasCard(
-      {required this.title, required this.imageUrl, required this.onTap});
+      {super.key, required this.title, required this.imageUrl, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

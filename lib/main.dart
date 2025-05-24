@@ -1,11 +1,5 @@
 import 'package:easy_meal/local_storage_management/hive_services.dart';
-import 'package:easy_meal/models/day_model.dart';
-import 'package:easy_meal/models/meal_model.dart';
-import 'package:easy_meal/screens/historical/history_page.dart';
-import 'package:easy_meal/screens/home_screen.dart';
 import 'package:easy_meal/screens/sign_in.dart';
-import 'package:easy_meal/screens/sign_up.dart';
-import 'package:easy_meal/screens/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'firebase_options.dart';
@@ -29,7 +23,9 @@ class MainApp extends StatelessWidget {
       builder: (buildContext, orientation, screenType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SignInPage(),
+          home: 
+          //MealPage(),
+          SignInPage(),
         );
       },
     );

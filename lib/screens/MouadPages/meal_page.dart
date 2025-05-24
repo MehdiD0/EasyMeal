@@ -1,25 +1,27 @@
+import 'package:flutter/material.dart';
 import '../../Components/MouadComponents/buttons.dart';
 import '../../Components/MouadComponents/line.dart';
 import '../../Components/MouadComponents/meal_list.dart';
 import '../../Components/MouadComponents/search_bar.dart';
-import 'package:flutter/material.dart';
 
 class MealPage extends StatefulWidget {
+  const MealPage({super.key});
+
   @override
   _MealPageState createState() => _MealPageState();
 }
 
 class _MealPageState extends State<MealPage> {
-  List<Map<String, String>> allMeals = [
+  final List<Map<String, String>> allMeals = [
     {
       'title': 'Salade César',
       'type': 'Entrée',
-      'image': 'Assets/saladeCesar.png'
+      'image': 'assets/saladeCesar.png',
     },
-    {'title': 'Pasta', 'type': 'Plat', 'image': 'assets/MouadPart/pasta.jpg'},
-    {'title': 'Pizza', 'type': 'Plat', 'image': 'assets/MouadPart/pizza.jpg'},
-    {'title': 'Tacos', 'type': 'Plat', 'image': 'assets/MouadPart/tacos.png'},
-    {'title': 'Tiramisu', 'type': 'Dessert', 'image': 'assets/MouadPart/tiramisu.png'},
+    {'title': 'Pasta', 'type': 'Plat', 'image': 'assets/pasta.jpg'},
+    {'title': 'Pizza', 'type': 'Plat', 'image': 'assets/pizza.jpg'},
+    {'title': 'Tacos', 'type': 'Plat', 'image': 'assets/tacos.png'},
+    {'title': 'Tiramisu', 'type': 'Dessert', 'image': 'assets/tiramisu.png'},
   ];
 
   List<Map<String, String>> filteredMeals = [];
@@ -27,17 +29,27 @@ class _MealPageState extends State<MealPage> {
   @override
   void initState() {
     super.initState();
-    filteredMeals = List.from(allMeals); // Au départ, afficher tous les repas
+    filteredMeals = List.from(allMeals); // Show all meals by default
   }
 
   void filterMeals(String category) {
     setState(() {
-      if (category == 'All') {
-        filteredMeals = List.from(allMeals);
-      } else {
-        filteredMeals =
-            allMeals.where((meal) => meal['type'] == category).toList();
-      }
+      filteredMeals =
+          category == 'All'
+              ? List.from(allMeals)
+              : allMeals.where((meal) => meal['type'] == category).toList();
+    });
+  }
+
+  void searchMeals(String query) {
+    setState(() {
+      filteredMeals =
+          allMeals
+              .where(
+                (meal) =>
+                    meal['title']!.toLowerCase().contains(query.toLowerCase()),
+              )
+              .toList();
     });
   }
 
@@ -45,6 +57,7 @@ class _MealPageState extends State<MealPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Meals'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -56,29 +69,17 @@ class _MealPageState extends State<MealPage> {
           children: [
             SearchBarWidget(
               hintText: 'Rechercher sur votre meal',
-              onSearchPressed: (query) {
-                setState(() {
-                  filteredMeals = allMeals
-                      .where((meal) => meal['title']!
-                          .toLowerCase()
-                          .contains(query.toLowerCase()))
-                      .toList();
-                });
-              },
+              onSearchPressed: searchMeals,
             ),
             SizedBox(height: 30),
-            ButtonsFilter(
-                onCategorySelected: filterMeals), // 🔥 Lien avec le filtre
+            ButtonsFilter(onCategorySelected: filterMeals),
             SizedBox(height: 30),
             Line1(),
             SizedBox(height: 30),
             Expanded(child: MealList(meals: filteredMeals)),
             Line1(),
             SizedBox(height: 30),
-            Button(
-              title: 'Confirm',
-              onPressed: () {},
-            ),
+            Button(title: 'Confirm', onPressed: () {}),
           ],
         ),
       ),

@@ -4,7 +4,7 @@ class SearchBarWidget extends StatelessWidget {
   final String hintText;
   final Function(String) onSearchPressed;
 
-  SearchBarWidget({required this.hintText, required this.onSearchPressed});
+  const SearchBarWidget({super.key, required this.hintText, required this.onSearchPressed});
 
   @override
   Widget build(BuildContext context) {

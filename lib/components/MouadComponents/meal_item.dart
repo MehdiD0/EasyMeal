@@ -5,7 +5,7 @@ class MealItem extends StatelessWidget {
   final String type;
   final String imageUrl;
 
-  MealItem({required this.title, required this.type, required this.imageUrl});
+  const MealItem({super.key, required this.title, required this.type, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

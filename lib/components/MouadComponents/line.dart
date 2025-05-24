@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Line1 extends StatelessWidget {
+  const Line1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
