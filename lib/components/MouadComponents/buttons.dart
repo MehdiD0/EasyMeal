@@ -4,7 +4,7 @@ class Button extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  Button({required this.title, required this.onPressed});
+  const Button({super.key, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class Button extends StatelessWidget {
 class ButtonsFilter extends StatefulWidget {
   final Function(String) onCategorySelected;
 
-  ButtonsFilter({required this.onCategorySelected});
+  const ButtonsFilter({super.key, required this.onCategorySelected});
 
   @override
   _ButtonsFilterState createState() => _ButtonsFilterState();

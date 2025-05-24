@@ -1,3 +1,4 @@
+import 'package:easy_meal/components/snackbar.dart';
 import 'package:easy_meal/firbase_authentication/auth_services.dart';
 import 'package:flutter/material.dart';
 
@@ -72,44 +73,15 @@ void showForgotPasswordBottomSheet(BuildContext context) {
                 onPressed: () async {
                   String email = emailController.text.trim();
                   bool success = await authService.resetPassword(email);
-                  Navigator.of(context).pop(); // fermer le bottom sheet
+                  Navigator.of(context).pop(); // Close bottom sheet
+
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor:
-                          success ? Color(0xFFFF914C) : Colors.red.shade600,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      elevation: 8,
-                      content: Row(
-                        children: [
-                          Icon(
-                            success
-                                ? Icons.check_circle_outline
-                                : Icons.error_outline,
-                            color: Colors.white,
-                          ),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              success
-                                  ? "Email sent successfully! Please check your inbox "
-                                  : "Failed to send email. Please try again ",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      duration: Duration(seconds: 4),
+                    CustomSnackBar.createSnackbar(
+                      msg:
+                          success
+                              ? "Email sent successfully! Please check your inbox"
+                              : "Failed to send email. Please try again",
+                      alter: !success,
                     ),
                   );
                 },

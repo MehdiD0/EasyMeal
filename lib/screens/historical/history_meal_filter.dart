@@ -45,7 +45,7 @@ class _HistoryMealFilterState extends State<HistoryMealFilter> {
           MealFilterButtons(onCategorySelected: _handleFilterChange),
           SizedBox(height: 2.h),
           _filteredMeals.isEmpty
-              ? Container(
+              ? SizedBox(
                 height: 20.h,
                 child: Center(
                   child: Text("No meals found for $_selectedFilter",style: AppTheme.paragraphStyle.copyWith(fontSize: 15.sp),),
