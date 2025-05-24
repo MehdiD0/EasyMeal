@@ -3,11 +3,12 @@ import 'dart:typed_data';
 import 'package:hive_flutter/adapters.dart';
 
 part 'meal_model.g.dart';
+
 @HiveType(typeId: 2)
 class MealModel {
   @HiveField(0)
   String? name;
-  @HiveField(1) 
+  @HiveField(1)
   Uint8List? image;
   @HiveField(2)
   String? description;
@@ -21,17 +22,29 @@ class MealModel {
   DateTime? dateAdded;
 
   // Default constructor :
-  MealModel({required this.name, required this.image});
+  MealModel({
+    required this.name,
+    required this.image,
+    this.comment,
+    this.description,
+    this.type,
+    this.rating,
+    this.dateAdded,
+  });
 
   // Constructor from map :
   MealModel.fromMap(Map<String, dynamic> map) {
     name = map['name'] ?? '';
-    image = map['image'] != null ? Uint8List.fromList(List<int>.from(map['image'])):null;
+    image =
+        map['image'] != null
+            ? Uint8List.fromList(List<int>.from(map['image']))
+            : null;
     description = map['description'] ?? '';
     comment = map['comment'] ?? '';
     type = map['type'] ?? '';
     rating = (map['rating'] is int) ? map['rating'] as int : 0;
-    dateAdded = map['dateAdded'] != null ? DateTime.parse(map['dateAdded']) : null;
+    dateAdded =
+        map['dateAdded'] != null ? DateTime.parse(map['dateAdded']) : null;
   }
 
   // Setters :
