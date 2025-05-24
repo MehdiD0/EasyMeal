@@ -21,23 +21,50 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String selectedDate;
 
+  // Static meals mapped by weekday names
+  final Map<String, List<MealModel>> weeklyMeals = {
+    'Monday': [
+      MealModel(name: 'Pizza', image: Uint8List(0)),
+      MealModel(name: 'Pasta', image: Uint8List(0)),
+    ],
+    'Tuesday': [
+      MealModel(name: 'Tacos', image: Uint8List(0)),
+      MealModel(name: 'Salad', image: Uint8List(0)),
+    ],
+    'Wednesday': [MealModel(name: 'Steak', image: Uint8List(0))],
+    'Thursday': [MealModel(name: 'Pasta', image: Uint8List(0))],
+    'Friday': [MealModel(name: 'Roast Chicken', image: Uint8List(0))],
+    'Saturday': [MealModel(name: 'Steak', image: Uint8List(0))],
+    'Sunday': [MealModel(name: 'pizza', image: Uint8List(0))],
+  };
+
   @override
   void initState() {
     super.initState();
     selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
   }
 
+  // Helper to get full weekday name from date string
+  String getWeekdayName(String dateStr) {
+    final date = DateTime.parse(dateStr);
+    return DateFormat('EEEE').format(date); // e.g. Monday, Tuesday...
+  }
+
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
+
+    // Generate 7 days starting from today
     final dates = List.generate(
       7,
       (i) => DateFormat('yyyy-MM-dd').format(today.add(Duration(days: i))),
     );
-    final todayMeals = List.generate(
-      4,
-      (_) => MealModel(name: "Special", image: Uint8List(0)),
-    );
+
+    // Get weekday name from selected date
+    final weekdayName = getWeekdayName(selectedDate);
+
+    // Meals for the selected day, empty list if none found
+    final todayMeals = weeklyMeals[weekdayName] ?? [];
 
     return Scaffold(
       backgroundColor: AppTheme.white,
@@ -48,19 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Optional Page Title
-              // Center(
-              //   child: Text(
-              //     "Home",
-              //     style: TextStyle(
-              //       fontSize: 28.sp,
-              //       fontWeight: FontWeight.bold,
-              //       fontStyle: FontStyle.italic,
-              //       color: AppTheme.primaryColor,
-              //     ),
-              //   ),
-              // ),
-              SizedBox(height: 2.h),
+              // SizedBox(height: 2.h),
 
               // Date Picker Horizontal List
               SizedBox(
