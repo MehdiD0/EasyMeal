@@ -1,14 +1,18 @@
 import 'package:easy_meal/local_storage_management/hive_services.dart';
 import 'package:easy_meal/models/meal_model.dart';
+import 'package:easy_meal/screens/add_meal_screen.dart';
+import 'package:easy_meal/screens/all_meals_page.dart';
 import 'package:easy_meal/screens/historical/history_page.dart';
 import 'package:easy_meal/screens/home_screen.dart';
 import 'package:easy_meal/screens/meal_page.dart';
+import 'package:easy_meal/screens/profile.dart';
 import 'package:easy_meal/screens/sign_in.dart';
 import 'package:easy_meal/screens/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'firebase_options.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
@@ -109,6 +113,29 @@ class _MainAppState extends State<MainApp> {
                   meal: meal ?? MealModel(name: 'No Name', image: Uint8List(0)),
                 );
               },
+            ),
+            GoRoute(
+              path: 'profile',
+              name: 'profile',
+              builder: (BuildContext context, GoRouterState state) {
+                return const ProfilePage();
+              },
+            ),
+            GoRoute(
+              path: 'allmeals',
+              name: 'allmeals',
+              builder: (BuildContext context, GoRouterState state) {
+                return AllMeals();
+              },
+              routes: <RouteBase>[
+                GoRoute(
+                  path: 'addmeal',
+                  name: 'addmeal',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return AddMealScreen();
+                  },
+                ),
+              ],
             ),
           ],
         ),

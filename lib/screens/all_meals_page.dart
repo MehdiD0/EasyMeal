@@ -3,39 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:easy_meal/models/meal_model.dart';
 import 'package:easy_meal/components/LinkText.dart';
 import 'package:easy_meal/components/RatingCard.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class FoodRatingPage extends StatelessWidget {
-  FoodRatingPage({Key? key}) : super(key: key);
+class AllMeals extends StatelessWidget {
+  AllMeals({super.key});
 
   // Dummy meals – replace with data from Hive or DB later
   final Map<String, List<MealModel>> categorizedMeals = {
     'Entrées 🥗': [
-      MealModel(
-        name: 'Bruschetta',
-        image: Uint8List.fromList(Image.asset('assets/Bruschetta.jpg') as List<int>), // Replace with Uint8List.fromList(...) if available
-        //rating: 4,
-      ),
-      MealModel(name: 'Caprese Salad', image: Uint8List.fromList(Image.asset('assets/Caprese Salad.jpg') as List<int>), 
-      //rating: 4
-      ),
+      MealModel(name: 'Bruschetta', image: Uint8List(0)),
+      MealModel(name: 'Caprese Salad', image: Uint8List(0)),
     ],
     'Plats 🍛': [
-      MealModel(name: 'Grilled Salmon', image: Uint8List.fromList(Image.asset('assets/Grilled Salmon.jpg') as List<int>), 
-      //rating: 3
-      ),
-      MealModel(name: 'Pasta Carbonara', image: Uint8List.fromList(Image.asset('assets/Pasta Carbonara.jpg') as List<int>), 
-      //rating: 5
-      ),
+      MealModel(name: 'Grilled Salmon', image: Uint8List(0)),
+      MealModel(name: 'Pasta Carbonara', image: Uint8List(0)),
     ],
     'Dessert 🍰': [
-      MealModel(name: 'Tiramisu', image: Uint8List.fromList(Image.asset('assets/Tiramisu.jpg') as List<int>),
-      //rating: 4
-      ),
-      MealModel(name: 'Chocolate Cake', image: Uint8List.fromList(Image.asset('assets/Chocolate Cake.jpg') as List<int>),
-      //rating: 5
-      ),
+      MealModel(name: 'Tiramisu', image: Uint8List(0)),
+      MealModel(name: 'Chocolate Cake', image: Uint8List(0)),
     ],
   };
 
@@ -48,7 +35,7 @@ class FoodRatingPage extends StatelessWidget {
           children: [
             SizedBox(height: 8.h),
             ...categorizedMeals.entries.map((entry) {
-              return _buildCategorySection(entry.key, entry.value);
+              return _buildCategorySection(entry.key, entry.value, context);
             }).toList(),
           ],
         ),
@@ -56,7 +43,11 @@ class FoodRatingPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategorySection(String title, List<MealModel> meals) {
+  Widget _buildCategorySection(
+    String title,
+    List<MealModel> meals,
+    BuildContext context,
+  ) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.5.w),
       child: Column(
@@ -75,9 +66,10 @@ class FoodRatingPage extends StatelessWidget {
                 ),
               ),
               LinkText(
-                text: 'View All',
+                text: 'Create',
                 onTap: () {
-                  // TODO: navigate to full list screen
+                  // Navigate to Add Meal Screen
+                  context.goNamed('addmeal');
                 },
               ),
             ],
@@ -87,12 +79,15 @@ class FoodRatingPage extends StatelessWidget {
             height: 30.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: meals
-                  .map((meal) => Padding(
-                        padding: EdgeInsets.all(1.h),
-                        child: RatingCard(meal: meal),
-                      ))
-                  .toList(),
+              children:
+                  meals
+                      .map(
+                        (meal) => Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: RatingCard(meal: meal),
+                        ),
+                      )
+                      .toList(),
             ),
           ),
         ],
@@ -100,4 +95,3 @@ class FoodRatingPage extends StatelessWidget {
     );
   }
 }
-

@@ -138,6 +138,7 @@ class _SignUpPage extends State<SignUpPage> {
                           alter: false,
                         ),
                       );
+                      context.goNamed('login');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         CustomSnackBar.createSnackbar(
