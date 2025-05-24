@@ -1,8 +1,8 @@
 import 'package:easy_meal/helpers/app_theme.dart';
-
 import '../../Components/MouadComponents/cards.dart';
 import '../../Components/MouadComponents/line.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class TypeRepasPage extends StatelessWidget {
   const TypeRepasPage({super.key});
@@ -11,49 +11,41 @@ class TypeRepasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     icon: Icon(Icons.arrow_back, color: Colors.black),
-        //     onPressed: () => Navigator.pop(context),
-        //   ),
-        //   backgroundColor: Colors.white,
-        //   elevation: 0,
-        // ),
         backgroundColor: AppTheme.white,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: 3.h),
               Row(
                 children: [
                   IconButton(
                     icon: Icon(
                       Icons.arrow_back_ios,
                       color: Colors.black,
-                      size: 30,
-                    ), // Or your preferred color
+                      size: 4.h, // responsive size
+                    ),
                     onPressed: () {
-                      Navigator.pop(context); // This pops the current page
+                      Navigator.pop(context);
                     },
                   ),
-                  SizedBox(width: 70),
+                  SizedBox(width: 20.w),
                   Text(
                     "Repas",
-                    style: TextStyle(
-                      fontSize: 48,
+                    style: AppTheme.titleStyle.copyWith(
+                      fontSize: 25.sp,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'roboto',
-                      color: Color(0xFFFF914C),
+                      fontStyle: FontStyle.italic,
+                      color: AppTheme.primaryColor,
+                      letterSpacing: 1.1,
                     ),
                   ),
                 ],
               ),
-
-              SizedBox(height: 30),
+              SizedBox(height: 3.h),
               Line1(),
-              SizedBox(height: 120),
+              SizedBox(height: 15.h),
               RepasCard(
                 title: "Dejeuner",
                 imageUrl: "assets/dejeuner.png",
@@ -61,7 +53,7 @@ class TypeRepasPage extends StatelessWidget {
                   print("Dejeuner sélectionné");
                 },
               ),
-              SizedBox(height: 70),
+              SizedBox(height: 7.h),
               RepasCard(
                 title: "Diner",
                 imageUrl: "assets/diner.jpg",

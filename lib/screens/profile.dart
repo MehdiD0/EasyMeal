@@ -18,20 +18,27 @@ void _showLogoutDialog(BuildContext context) {
     builder:
         (context) => AlertDialog(
           backgroundColor: Colors.white,
-          title: const Text(
+          title: Text(
             "Log Out",
-            style: TextStyle(fontFamily: 'roboto', color: Colors.red),
+            style: AppTheme.titleStyle.copyWith(
+              color: Colors.red,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-          content: const Text(
+          content: Text(
             "Are you sure you want to log out?",
-            style: TextStyle(fontFamily: 'roboto', color: Colors.black),
+            style: AppTheme.paragraphStyle.copyWith(
+              color: Colors.black,
+              fontSize: 16.sp,
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text(
+              child: Text(
                 "Cancel",
-                style: TextStyle(color: Colors.black),
+                style: AppTheme.labelStyle.copyWith(color: Colors.black),
               ),
             ),
             TextButton(
@@ -39,7 +46,10 @@ void _showLogoutDialog(BuildContext context) {
                 Navigator.pop(context);
                 // TODO: Navigate to login page
               },
-              child: const Text("Logout", style: TextStyle(color: Colors.red)),
+              child: Text(
+                "Logout",
+                style: AppTheme.labelStyle.copyWith(color: Colors.red),
+              ),
             ),
           ],
         ),
@@ -61,19 +71,20 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // 🔸 Header
+              // Header
               Text(
                 'Profile',
-                style: TextStyle(
+                style: AppTheme.titleStyle.copyWith(
                   fontSize: 25.sp,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
-                  color: Colors.orange,
+                  color: AppTheme.primaryColor,
+                  letterSpacing: 1.1,
                 ),
               ),
               SizedBox(height: 3.h),
 
-              // 🔸 Profile Info
+              // Profile Info Container
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -100,15 +111,15 @@ class ProfilePage extends StatelessWidget {
                       children: [
                         Text(
                           'Bendimerad Mohamed el Mahdi',
-                          style: TextStyle(
+                          style: AppTheme.labelStyle.copyWith(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           '@itz_dii',
-                          style: TextStyle(
-                            fontSize: 14,
+                          style: AppTheme.paragraphStyle.copyWith(
+                            fontSize: 14.sp,
                             color: Colors.grey.shade600,
                           ),
                         ),
@@ -120,7 +131,7 @@ class ProfilePage extends StatelessWidget {
 
               SizedBox(height: 4.h),
 
-              // 🔸 Settings Options
+              // Settings Options
               Column(
                 children: [
                   _buildSettingsOption(
@@ -165,9 +176,10 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
+
               SizedBox(height: 4.h),
 
-              // 🔸 Divider
+              // Divider
               Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
               SizedBox(height: 2.h),
             ],
@@ -188,11 +200,17 @@ class ProfilePage extends StatelessWidget {
       leading: Icon(icon, color: Colors.black),
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        style: AppTheme.labelStyle.copyWith(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       subtitle: Text(
         subtitle,
-        style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+        style: AppTheme.paragraphStyle.copyWith(
+          fontSize: 14.sp,
+          color: Colors.grey.shade600,
+        ),
       ),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,

@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+
 import 'package:easy_meal/components/bottom_nav_bar.dart';
 import 'package:easy_meal/components/buttons.dart';
 import 'package:easy_meal/components/day_card.dart';
@@ -18,6 +19,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  }
+
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
@@ -39,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ── Page Title ──
+              // Optional Page Title
               // Center(
               //   child: Text(
               //     "Home",
@@ -53,21 +62,30 @@ class _HomeScreenState extends State<HomeScreen> {
               // ),
               SizedBox(height: 2.h),
 
-              // ── Date picker ──
+              // Date Picker Horizontal List
               SizedBox(
                 height: 10.h,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: dates.length,
                   separatorBuilder: (_, __) => SizedBox(width: 3.w),
-                  itemBuilder: (ctx, i) => DayCard(date: dates[i]),
+                  itemBuilder:
+                      (ctx, i) => DayCard(
+                        date: dates[i],
+                        isSelected: dates[i] == selectedDate,
+                        onTap: () {
+                          setState(() {
+                            selectedDate = dates[i];
+                          });
+                        },
+                      ),
                 ),
               ),
 
               SizedBox(height: 2.h),
               Divider(color: AppTheme.primaryColor, thickness: 2),
 
-              // ── Today's meals header ──
+              // Today's Meals Header
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 1.5.h),
                 child: Row(
@@ -79,7 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => TypeRepasPage()),
+                          MaterialPageRoute(
+                            builder: (_) => const TypeRepasPage(),
+                          ),
                         );
                       },
                     ),
@@ -87,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              // ── Today's meals cards ──
+              // Today's Meals Cards Horizontal List
               SizedBox(
                 height: 28.h,
                 child: ListView.separated(
@@ -101,13 +121,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 2.h),
               Divider(color: AppTheme.primaryColor, thickness: 2),
 
-              // ── Weekly export title ──
+              // Weekly Export Title
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 1.5.h),
                 child: Text("Meals of the week:", style: AppTheme.titleStyle),
               ),
 
-              // ── Export buttons ──
+              // Export Buttons Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
