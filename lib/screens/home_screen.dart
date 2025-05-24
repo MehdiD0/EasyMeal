@@ -1,5 +1,6 @@
 import 'package:easy_meal/components/buttons.dart';
 import 'package:easy_meal/components/day_card.dart';
+import 'package:easy_meal/components/dialog.dart';
 import 'package:easy_meal/components/meal_card.dart';
 import 'package:easy_meal/firbase_authentication/auth_services.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
@@ -229,7 +230,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    AuthService().logout();
+                    //AuthService().logout();
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext dialogContex) {
+                        return CustomDialog.createDialog(
+                          context: dialogContex,
+                          title: "Log out of the app",
+                          content: "Are you sure you want to log out?",
+                          onConfirm: () {
+                            AuthService().logout();
+                          },
+                        );
+                      },
+                    );
                   },
                   child: Column(
                     children: [
