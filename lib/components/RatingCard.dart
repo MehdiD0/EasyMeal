@@ -88,16 +88,18 @@ class RatingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double cardWidth = screenWidth * 0.4;
-    double cardHeight = cardWidth * 1.4;
+    double cardHeight = cardWidth * 1.29;
 
     return Container(
       width: cardWidth,
       height: cardHeight,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+      ),
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             child: SizedBox(
               width: cardWidth,
               height: cardHeight,
