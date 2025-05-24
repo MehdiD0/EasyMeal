@@ -1,3 +1,4 @@
+import 'package:easy_meal/components/bottom_nav_bar.dart';
 import 'package:easy_meal/components/buttons.dart';
 import 'package:easy_meal/components/day_card.dart';
 import 'package:easy_meal/components/dialog.dart';
@@ -177,89 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 4.h),
             Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
             Expanded(child: SizedBox()),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      Icon(Icons.home),
-                      Text(
-                        "Home",
-                        style: AppTheme.hintTextStyle.copyWith(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      Icon(Icons.lunch_dining),
-                      Text(
-                        "Meals",
-                        style: AppTheme.hintTextStyle.copyWith(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    context.goNamed("history");
-                  },
-                  child: Column(
-                    children: [
-                      Icon(Icons.history),
-                      Text(
-                        "History",
-                        style: AppTheme.hintTextStyle.copyWith(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    //AuthService().logout();
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext dialogContex) {
-                        return CustomDialog.createDialog(
-                          context: dialogContex,
-                          title: "Log out of the app",
-                          content: "Are you sure you want to log out?",
-                          onConfirm: () {
-                            AuthService().logout();
-                          },
-                        );
-                      },
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Icon(Icons.logout),
-                      Text(
-                        "Logout",
-                        style: AppTheme.hintTextStyle.copyWith(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            BottomNavBar(currentIndex: 0),
             Expanded(child: SizedBox()),
           ],
         ),

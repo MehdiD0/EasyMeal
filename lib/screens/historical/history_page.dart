@@ -1,3 +1,4 @@
+import 'package:easy_meal/components/bottom_nav_bar.dart';
 import 'package:easy_meal/components/filter_buttons.dart';
 import 'package:easy_meal/components/search_bar.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
@@ -27,43 +28,52 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "History",
-          style: AppTheme.titleStyle.copyWith(fontSize: 25.sp),
-        ),
-      ),
-      body: Column(
-        children: [
-          SizedBox(height: 3.h),
-          CustomSearchBar(hintText: "Search your meal", controller: controller),
-          SizedBox(height: 3.h),
-          FilterButtonsGroup(
-            options: options,
-            selectedIndex: _selectedFilterIndex,
-            onSelected: (index) {
-              setState(() {
-                _selectedFilterIndex = index;
-              });
-            },
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  if (_selectedFilterIndex == 2)
-                    HistoryMealFilter()
-                  else if (_selectedFilterIndex == 3)
-                    CommentVisuel(meals: meals)
-                  else if (_selectedFilterIndex == 1)
-                    RecentMeals(meals: recentMeals,)
-                  else AllHistoryMeals(meals: meals)
-                ],
+      backgroundColor: AppTheme.fillColor,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: 2.h),
+            Text(
+              "History",
+              style: AppTheme.titleStyle.copyWith(fontSize: 25.sp),
+            ),
+            SizedBox(height: 3.h),
+            CustomSearchBar(
+              hintText: "Search your meal",
+              controller: controller,
+            ),
+            SizedBox(height: 3.h),
+            FilterButtonsGroup(
+              options: options,
+              selectedIndex: _selectedFilterIndex,
+              onSelected: (index) {
+                setState(() {
+                  _selectedFilterIndex = index;
+                });
+              },
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (_selectedFilterIndex == 2)
+                      HistoryMealFilter()
+                    else if (_selectedFilterIndex == 3)
+                      CommentVisuel(meals: meals)
+                    else if (_selectedFilterIndex == 1)
+                      RecentMeals(meals: recentMeals)
+                    else
+                      AllHistoryMeals(meals: meals),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Container(width: 100.w, height: 2, color: AppTheme.primaryColor),
+            SizedBox(height: 2.h),
+            BottomNavBar(currentIndex: 2),
+            SizedBox(height: 2.h),
+          ],
+        ),
       ),
     );
   }
