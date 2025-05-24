@@ -56,7 +56,7 @@ class TypeRepasPage extends StatelessWidget {
               SizedBox(height: 120),
               RepasCard(
                 title: "Dejeuner",
-                imageUrl: "../../assets/dejeuner.png",
+                imageUrl: "assets/dejeuner.png",
                 onTap: () {
                   print("Dejeuner sélectionné");
                 },
@@ -64,7 +64,7 @@ class TypeRepasPage extends StatelessWidget {
               SizedBox(height: 70),
               RepasCard(
                 title: "Diner",
-                imageUrl: "../../assets/diner.jpg",
+                imageUrl: "assets/diner.jpg",
                 onTap: () {
                   print("Diner sélectionné");
                 },
