@@ -7,6 +7,7 @@ import 'package:easy_meal/firbase_authentication/auth_services.dart';
 import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/helpers/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -132,11 +133,11 @@ class _SignUpPage extends State<SignUpPage> {
                       AuthService authService = AuthService();
                       var user = authService.signUp(email, password, name);
                       ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackBar.createSnackbar(
-                        msg: "You Welcome",
-                        alter: false,
-                      ),
-                    );
+                        CustomSnackBar.createSnackbar(
+                          msg: "You Welcome",
+                          alter: false,
+                        ),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         CustomSnackBar.createSnackbar(
@@ -160,10 +161,7 @@ class _SignUpPage extends State<SignUpPage> {
                     PrimaryTextButton(
                       label: "Login",
                       onPressed: () {
-                        //   Navigator.pushReplacementNamed(
-                        //     context,
-                        //     //AppRouter.routeLogin,
-                        //   );
+                        context.goNamed('login');
                       },
                     ),
                   ],

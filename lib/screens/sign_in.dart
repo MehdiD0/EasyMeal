@@ -8,6 +8,7 @@ import 'package:easy_meal/helpers/app_theme.dart';
 import 'package:easy_meal/helpers/validators.dart';
 import 'package:easy_meal/screens/MouadPages/forgetpassword.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class SignInPage extends StatefulWidget {
@@ -42,13 +43,6 @@ class _SignInPage extends State<SignInPage> {
                   ),
                 ],
               ),
-              //SizedBox(height: 5.h),
-              // SizedBox(
-              //   height: 19.h,
-              //   child: WavyHeader(),
-              // ),
-              // //SizedBox(height: 1.h),
-              // Image.asset('assets/icon.png', height: 50.sp),
               SizedBox(height: 6.h),
               Text("Welcome back !", style: AppTheme.titleStyle),
               SizedBox(height: 1.h),
@@ -83,10 +77,12 @@ class _SignInPage extends State<SignInPage> {
                 controller: passwController,
               ),
               SizedBox(height: 3.h),
-              PrimaryTextButton(label: "Forgot Password?", onPressed: () {
-                showForgotPasswordBottomSheet(context);
-                  
-              }),
+              PrimaryTextButton(
+                label: "Forgot Password?",
+                onPressed: () {
+                  showForgotPasswordBottomSheet(context);
+                },
+              ),
               PrimaryButton(
                 label: isLoading ? "" : "Login",
                 onPressed:
@@ -105,7 +101,6 @@ class _SignInPage extends State<SignInPage> {
                               password,
                             );
                             if (sucess != null) {
-                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 CustomSnackBar.createSnackbar(
                                   msg: "User Login Succefully",
@@ -113,7 +108,6 @@ class _SignInPage extends State<SignInPage> {
                                 ),
                               );
                             } else {
-                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 CustomSnackBar.createSnackbar(
                                   msg: "Error when Login",
@@ -140,10 +134,7 @@ class _SignInPage extends State<SignInPage> {
                     PrimaryTextButton(
                       label: "Sign Up",
                       onPressed: () {
-                        //   Navigator.pushReplacementNamed(
-                        //     context,
-                        //     //AppRouter.routeLogin,
-                        //   );
+                        context.goNamed('signup');
                       },
                     ),
                   ],
